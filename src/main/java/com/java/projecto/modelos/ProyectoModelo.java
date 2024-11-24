@@ -2,7 +2,7 @@
 package com.java.projecto.modelos;
 
 
-public class ProyectoModelo extends Servicio {
+public class ProyectoModelo extends ServicioModelo {
     private int codigoProyecto;
     private String fecha_inicio;
     private String descripcionProyecto;

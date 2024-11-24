@@ -1,12 +1,12 @@
 
 package com.java.projecto.modelos;
 
-public class Servicio {
+public class ServicioModelo {
     private int codigoServicio;
     private String descripcionServicio;
     private double valor_unitario;
     
-    public Servicio(int codigoServicio, String descripcionServicio ,
+    public ServicioModelo(int codigoServicio, String descripcionServicio ,
             double valor_unitario){
         this.codigoServicio =codigoServicio;
         this.descripcionServicio =descripcionServicio;
