@@ -1,6 +1,6 @@
 package com.java.projecto.modelos;
 
-public class FacturaModelo extends ProyectoModelo {
+public class FacturaModelo  {
     private int contador_factura;
     private int factura;   
     private ProyectoModelo[] proyecto;
