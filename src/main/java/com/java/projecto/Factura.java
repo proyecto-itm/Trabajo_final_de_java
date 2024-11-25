@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Factura {
 
     private Cliente clientes = new Cliente();
-    private ClienteModelo[] lista = clientes.getListaClientes();
+    //private ClienteModelo[] lista = clientes.getListaClientes();
     private Scanner scanner = new Scanner(System.in);
 
     public void Inciar(){

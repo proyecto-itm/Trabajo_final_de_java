@@ -3,10 +3,11 @@ package com.java.projecto;
 import java.util.Scanner;
 
 public class Main {
-
+        
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Factura factura = new Factura();
+        Cliente cliente = new Cliente();
         while (true) {
             System.out.println("\n--- Menú Principal ---");
             System.out.println("1. Diseñadores");
@@ -26,7 +27,7 @@ public class Main {
                     // Llamar al módulo de supervisores
                     break;
                 case 3:
-                    // Llamar al módulo de clientes
+                    cliente.iniciar(scanner);
                     break;
                 case 4:
                     // Llamar al módulo de proyectos
@@ -42,5 +43,5 @@ public class Main {
                     System.out.println("Opción inválida.");
             }
         }
-    }
+    }    
 }
