@@ -2,75 +2,115 @@
 package com.java.projecto.modelos;
 
 
-public class ProyectoModelo extends ServicioModelo {
-    private int codigoProyecto;
-    private String fecha_inicio;
-    private String descripcionProyecto;
-    private int id_disenador;
-    private int id_supervisor;
-    private int id_cliente;
+public class ProyectoModelo  {
+    private int codigo;
+    private String fechaInicio;
+    private String descripcion;
+    private int idDisenador;
+    private int idSupervisor;
+    private int idCliente;
+    private ServicioModelo[] servicios;
+    private int totalServicios = 0;
+    private static final double IVA = 0.19;
 
-    public ProyectoModelo(int codigoServicio, String descripcionServicio, 
-            double valor_unitario, int codigoProyecto, String fecha_inicio, 
-            String descripcionProyecto, int id_disenador,int id_supervisor,int id_cliente) {
-        super(codigoServicio, descripcionServicio, valor_unitario);
-        this.codigoProyecto = codigoProyecto;
-        this.fecha_inicio = fecha_inicio;
-        this.descripcionProyecto = descripcionProyecto;
-        this.id_disenador = id_disenador;
-        this.id_supervisor = id_supervisor;
-        this.id_cliente = id_cliente;
-    }
-    
-   
-
-    public int getCodigoProyecto() {
-        return codigoProyecto;
+    public ProyectoModelo(int codigo, String fechaInicio, String descripcion, int idDisenador, int idSupervisor,
+                          int idCliente, int cantidadServicio) {
+        this.codigo = codigo;
+        this.fechaInicio = fechaInicio;
+        this.descripcion = descripcion;
+        this.idDisenador = idDisenador;
+        this.idSupervisor = idSupervisor;
+        this.idCliente = idCliente;
+        this.servicios = new ServicioModelo[cantidadServicio];
     }
 
-    public void setCodigoProyecto(int codigoProyecto) {
-        this.codigoProyecto = codigoProyecto;
+
+
+    public void agregarServicio(ServicioModelo servicio) {
+        if (totalServicios < servicios.length) {
+            servicios[totalServicios++] = servicio;
+        } else {
+            System.out.println("No se pueden agregar más servicios.");
+        }
     }
 
-    public String getFecha_inicio() {
-        return fecha_inicio;
+    public double calcularSubtotal() {
+        double subtotal = 0;
+        for (int i = 0; i < totalServicios; i++) {
+            subtotal += servicios[i].getValorUnitario();
+        }
+        return subtotal;
     }
 
-    public void setFecha_inicio(String fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
+    public double calcularIVA() {
+        return calcularSubtotal() * IVA;
     }
 
-    public String getDescripcionProyecto() {
-        return descripcionProyecto;
+    public double calcularTotal() {
+        return calcularSubtotal() + calcularIVA();
     }
 
-    public void setDescripcionProyecto(String descripcionProyecto) {
-        this.descripcionProyecto = descripcionProyecto;
+    public int getTotalServicios() {
+        return totalServicios;
     }
 
-    public int getId_disenador() {
-        return id_disenador;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setId_disenador(int id_disenador) {
-        this.id_disenador = id_disenador;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public int getId_supervisor() {
-        return id_supervisor;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public void setId_supervisor(int id_supervisor) {
-        this.id_supervisor = id_supervisor;
+    public String getFechaInicio() {
+        return fechaInicio;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public void setFechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public String getDescripcion() {
+        return descripcion;
     }
-    
-    
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getIdDisenador() {
+        return idDisenador;
+    }
+
+    public void setIdDisenador(int idDisenador) {
+        this.idDisenador = idDisenador;
+    }
+
+    public int getIdSupervisor() {
+        return idSupervisor;
+    }
+
+    public void setIdSupervisor(int idSupervisor) {
+        this.idSupervisor = idSupervisor;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public ServicioModelo[] getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(ServicioModelo[] servicios) {
+        this.servicios = servicios;
+    }
+
+    public void setTotalServicios(int totalServicios) {
+        this.totalServicios = totalServicios;
+    }
 }

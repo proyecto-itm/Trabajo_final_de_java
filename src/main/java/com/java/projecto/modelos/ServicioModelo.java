@@ -2,40 +2,28 @@
 package com.java.projecto.modelos;
 
 public class ServicioModelo {
-    private int codigoServicio;
-    private String descripcionServicio;
-    private double valor_unitario;
-    
-    public ServicioModelo(int codigoServicio, String descripcionServicio ,
-            double valor_unitario){
-        this.codigoServicio =codigoServicio;
-        this.descripcionServicio =descripcionServicio;
-        this.valor_unitario =valor_unitario;
+    private int codigo;
+    private String descripcion;
+    private double valorUnitario;
+
+    public ServicioModelo(int codigo, String descripcion, double valorUnitario) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.valorUnitario = valorUnitario;
     }
 
-    public int getCodigoServicio() {
-        return codigoServicio;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodigoServicio(int codigoServicio) {
-        this.codigoServicio = codigoServicio;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public String getDescripcionServicio() {
-        return descripcionServicio;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setDescripcionServicio(String descripcionServicio) {
-        this.descripcionServicio = descripcionServicio;
-    }
 
-    public double getValor_unitario() {
-        return valor_unitario;
-    }
 
-    public void setValor_unitario(double valor_unitario) {
-        this.valor_unitario = valor_unitario;
-    }
-    
-    
 }
