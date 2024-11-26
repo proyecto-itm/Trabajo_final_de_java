@@ -1,20 +1,16 @@
 package com.java.projecto.modelos;
 
-public class FacturaModelo extends ProyectoModelo {
+public class FacturaModelo  {
     private int contador_factura;
     private int factura;   
+    private ProyectoModelo[] proyecto;
+    public FacturaModelo(int contador_factura,int factura,int cantidad_proyecto) {
 
-    public FacturaModelo(int codigoServicio, String descripcionServicio, 
-            double valor_unitario, int codigoProyecto, String fecha_inicio, 
-            String descripcionProyecto, int id_disenador, int id_supervisor, 
-            int id_cliente,int contador_factura,int factura) {
-        super(codigoServicio, descripcionServicio, valor_unitario, 
-                codigoProyecto, fecha_inicio, descripcionProyecto, 
-                id_disenador, id_supervisor, id_cliente);
-        
         this.contador_factura =contador_factura;
         this.factura = factura;
+        this.proyecto =new ProyectoModelo[cantidad_proyecto];
     }
+
 
     public int getContador_factura() {
         return contador_factura;
@@ -24,6 +20,14 @@ public class FacturaModelo extends ProyectoModelo {
         this.contador_factura = contador_factura;
     }
 
+    public ProyectoModelo[] getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(ProyectoModelo[] proyecto) {
+        this.proyecto = proyecto;
+    }
+
     public int getFactura() {
         return factura;
     }
@@ -31,7 +35,4 @@ public class FacturaModelo extends ProyectoModelo {
     public void setFactura(int factura) {
         this.factura = factura;
     }
-    
-    
-    
 }
