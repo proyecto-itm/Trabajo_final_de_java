@@ -186,5 +186,31 @@ public class Cliente {
         }
         
     }    
+    public String getNombreCliente(int identificacion ){
+        String nombre = "";
+
+        for (ClienteModelo listaCliente : listaClientes) {
+            if (listaCliente != null) {
+                if (listaCliente.getIdentificacion() == identificacion) {
+                    nombre = listaCliente.getNombre() + listaCliente.getApellido();
+                }
+            }
+        }
+
+        return nombre;
+    }
+
+    public void setAgregarProyecto(int identificacion){
+        int numero_proyecto;
+
+        for (ClienteModelo listaCliente : listaClientes) {
+            if (listaCliente != null) {
+                if (listaCliente.getIdentificacion() == identificacion) {
+                    numero_proyecto = listaCliente.getCantidad() +1;
+                    listaCliente.setCantidad(numero_proyecto);
+                }
+            }
+        }
+    }
 }
     
