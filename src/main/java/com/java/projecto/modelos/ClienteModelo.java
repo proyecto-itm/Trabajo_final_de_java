@@ -1,15 +1,17 @@
 
 package com.java.projecto.modelos;
 
+import java.util.Date;
+
 
 public class ClienteModelo extends PersonaModelo{
  private String tipo_cliente;
  private int cantidad;
- private String fecha; 
+ private Date fecha; 
  
  public ClienteModelo(int identificacion, String nombre, String apellido,
          String direccion, String telefono,String tipo_cliente, 
-         int cantidad,String fecha){
+         int cantidad,Date fecha){
      
      super(identificacion,nombre,apellido,direccion,telefono);
      this.tipo_cliente = tipo_cliente;
@@ -33,11 +35,24 @@ public class ClienteModelo extends PersonaModelo{
         this.cantidad = cantidad;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    
+    public String calcularNivelFidelidad() {
+        long tiempo = new Date().getTime() - fecha.getTime();
+        int años = (int) (tiempo / (1000L * 60 * 60 * 24 * 365));
+
+        if (años < 2) {
+            return "Novel";
+        } else if (años <= 5) {
+            return "Plus";
+        } else {
+            return "Premium";
+        }
     }
 }
