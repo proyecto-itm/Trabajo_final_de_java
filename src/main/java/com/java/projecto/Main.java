@@ -8,6 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Factura factura = new Factura();
         Cliente cliente = new Cliente();
+        Proyecto proyecto = new Proyecto();
         while (true) {
             System.out.println("\n--- Menú Principal ---");
             System.out.println("1. Diseñadores");
@@ -30,7 +31,7 @@ public class Main {
                     cliente.iniciar(scanner);
                     break;
                 case 4:
-                    // Llamar al módulo de proyectos
+
                     break;
                 case 5:
                     factura.Inciar();

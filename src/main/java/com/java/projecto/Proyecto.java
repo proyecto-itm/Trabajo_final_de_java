@@ -6,8 +6,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Proyecto {
-
-    ProyectoModelo listaProyecto[];
+    private static final int MAX_ELEMENTOS = 50;
+    ProyectoModelo listaProyecto[] = new ProyectoModelo[MAX_ELEMENTOS];
     Supervisor supervisor = new Supervisor();
     Disenador disenador = new Disenador();
     Cliente cliente = new Cliente();
@@ -16,10 +16,6 @@ public class Proyecto {
 
 
     public Proyecto(int maxProyectos) {
-        this.listaProyecto = new ProyectoModelo[maxProyectos];
-    }
-
-    public void Iniciar(){
         int opcion = 0;
 
         do{
@@ -57,6 +53,7 @@ public class Proyecto {
         }while (opcion != 6);
 
     }
+
 
     private void menu(){
 
@@ -240,7 +237,7 @@ public class Proyecto {
         int idSupervisor;
         int existe = 0;
         boolean salir = false;
-        ClienteModelo[]  listaclintes = this.cliente.getListaClientes();
+        ClienteModelo[]  listaclintes = this.cliente.getListasClientes();
         do{
             idSupervisor = this.ValidarIngreso("cliente");
             for (ClienteModelo listaclinte : listaclintes) {

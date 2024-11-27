@@ -6,53 +6,45 @@ import java.util.Scanner;
 
 public class Factura {
 
-    private Cliente clientes = new Cliente();
-    //private ClienteModelo[] lista = clientes.getListaClientes();
-    private Scanner scanner = new Scanner(System.in);
+        private static int consecutivoInicial = (int) (Math.random() * 100) + 1; //random me arroja numeros aleatorios entre 1 y 100
+        private int numeroDeFactura;
+        private Proyecto proyecto;
 
-    public void Inciar(){
-        int opcion =  0 ;
-        do{
-            this.Menu();
-            do{
-                if(scanner.hasNextInt()) {
-                    opcion = scanner.nextInt();
-                }
-            }while (!scanner.hasNextInt());
-            switch (opcion) {
-                case 1:
-                    this.GenerarFactura();
-                    break;
-                case 2:
-                    this.GenerarTodasFacturas();
-                    break;
-                case 3:
-                    System.out.println("¡Hasta luego!");
-                    scanner.close();
-                    break;
-                default:
-                    System.out.println("Opción inválida.");
-            }
-        }while (opcion !=3);
+        public Factura(int numeroDeFactura, Proyecto proyecto) {
+            this.numeroDeFactura = numeroDeFactura;
+            this.proyecto = proyecto;
+        }
 
+        public int getNumeroDeFactura() {
+            return numeroDeFactura;
+        }
+
+        public void setNumeroDeFactura(int numeroDeFactura) {
+            this.numeroDeFactura = numeroDeFactura;
+        }
+
+        public Proyecto getProyecto() {
+            return proyecto;
+        }
+
+        public void setProyecto(Proyecto proyecto) {
+            this.proyecto = proyecto;
+        }
+
+        //realizamos metodo para calcular el iva
+        public double calcularIVA(double total) {
+            return total * 0.19;
+        }
+
+        //mostrar impresión o detalles
+        public void verFactura() {
+            System.out.println("Número de Factura = " + numeroDeFactura);
+            System.out.println("Identificación Proyecto = " + proyecto.getId());
+            System.out.println("Cliente: " + proyecto.getCliente().getClass());
+            System.out.println("Servicios:");
+            int[] servicios = proyecto.getServicios();
+            double[] valores = proyecto.getValores();
+            double total=0;
+
+        }
     }
-
-
-    private void Menu(){
-        System.out.println("\n--- Menú Factura ---");
-        System.out.println("1. Diseñadores");
-        System.out.println("2. Supervisores");
-        System.out.println("3. Clientes");
-        System.out.print("Seleccione una opción: ");
-    }
-
-
-    private void GenerarFactura(){
-
-    }
-
-    private void GenerarTodasFacturas(){
-
-    }
-
-}
