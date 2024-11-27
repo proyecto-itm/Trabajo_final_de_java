@@ -1,63 +1,48 @@
-
 package com.java.projecto.modelos;
 
-public class SupervisorModelo extends PersonaModelo{
-    private String fecha_nacimiento;
+import java.time.LocalDate;
+import java.time.Period;
+
+public class SupervisorModelo {
+    private int identificacion;
+    private String nombre;
+    private String apellido;
+    private String direccion;
+    private String telefono;
+    private LocalDate fechaNacimiento;
     private String sexo;
     private String area;
-    private int numero_disenador;
-    private int proyecto_supervisado;
-    public SupervisorModelo(int identificacion, String nombre, String apellido, 
-            String direccion, String telefono,String fecha_nacimiento,
-            String sexo,String area,int numero_disenador,
-            int proyecto_supervisado) {
-        super(identificacion, nombre, apellido, direccion, telefono);
-        
-        this.fecha_nacimiento =fecha_nacimiento;
-        this.sexo =sexo;
-        this.area =area;
-        this.numero_disenador =numero_disenador;
-        this.proyecto_supervisado =proyecto_supervisado;
-    }
+    private int numDisenadores;
+    private int proyectosSupervisados;
 
-    public String getFecha_nacimiento() {
-        return fecha_nacimiento;
-    }
-
-    public void setFecha_nacimiento(String fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
+    public SupervisorModelo(int identificacion, String nombre, String apellido, String direccion, 
+                            String telefono, LocalDate fechaNacimiento, String sexo, String area, 
+                            int numDisenadores, int proyectosSupervisados) {
+        this.identificacion = identificacion;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
         this.area = area;
+        this.numDisenadores = numDisenadores;
+        this.proyectosSupervisados = proyectosSupervisados;
     }
 
-    public int getNumero_disenador() {
-        return numero_disenador;
+    public int calcularEdad() {
+        return Period.between(this.fechaNacimiento, LocalDate.now()).getYears();
     }
 
-    public void setNumero_disenador(int numero_disenador) {
-        this.numero_disenador = numero_disenador;
-    }
+    // Getters y Setters
+    public int getIdentificacion() { return identificacion; }
+    public String getNombre() { return nombre; }
+    public String getApellido() { return apellido; }
+    public String getArea() { return area; }
+    public int getNumDisenadores() { return numDisenadores; }
+    public int getProyectosSupervisados() { return proyectosSupervisados; }
 
-    public int getProyecto_supervisado() {
-        return proyecto_supervisado;
+    public void setProyectosSupervisados(int proyectosSupervisados) {
+        this.proyectosSupervisados = proyectosSupervisados;
     }
-
-    public void setProyecto_supervisado(int proyecto_supervisado) {
-        this.proyecto_supervisado = proyecto_supervisado;
-    }
-    
 }
