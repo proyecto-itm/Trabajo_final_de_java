@@ -6,8 +6,10 @@ import com.java.projecto.modelos.SupervisorModelo;
 public class Supervisor {
 
     private SupervisorModelo[] listaSupervisores = new SupervisorModelo[50];
-    
-    
+
+    Supervisor(){
+        listaSupervisores[0] = new SupervisorModelo(500,"","","","","","","",10,10);
+    }
     public void setListaDiseno(SupervisorModelo[] listaDiseno) {
         this.listaSupervisores = listaDiseno;
     }
@@ -26,5 +28,8 @@ public class Supervisor {
         }
     }
 
+    public SupervisorModelo[] getListaSupervisores() {
+        return listaSupervisores;
+    }
 }
 
