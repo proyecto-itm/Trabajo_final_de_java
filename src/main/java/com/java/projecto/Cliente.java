@@ -201,6 +201,7 @@ public class Cliente {
         return nombre;
     }
 
+
     public void setAgregarProyecto(int identificacion){
         int numero_proyecto;
 
@@ -215,9 +216,11 @@ public class Cliente {
     }
 
 
+
     public ClienteModelo[] getListasClientes() {
 
         return listaClientes;
     }
+
 }
     

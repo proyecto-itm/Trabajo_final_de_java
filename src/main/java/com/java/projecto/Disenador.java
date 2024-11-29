@@ -9,6 +9,7 @@ public class Disenador {
 
 
 
+
     public DisenoModelo[] getListaDiseno() {
         return listaDiseno;
     }
@@ -29,5 +30,5 @@ public class Disenador {
                 }
             }
         }
-    }
+
 }
