@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Supervisor {
-    private final List<SupervisorModelo> listaSupervisores = new ArrayList<>();
+private final List<SupervisorModelo> listaSupervisores = new ArrayList<>();
 
     public void ingresarSupervisor() {
         Scanner scanner = new Scanner(System.in);

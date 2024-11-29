@@ -7,11 +7,28 @@ public class Disenador {
 
     private DisenoModelo[] listaDiseno = new DisenoModelo[50];
 
-    DisenoModelo[] getListaDiseno() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+
+
+    public DisenoModelo[] getListaDiseno() {
+        return listaDiseno;
     }
 
-    void setAgregarProyecto(int identificacion) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setListaDiseno(DisenoModelo[] listaDiseno) {
+        this.listaDiseno = listaDiseno;
     }
+
+
+    public void setAgregarProyecto(int identificacion){
+        int numero_proyecto;
+
+        for (DisenoModelo listaDisenador : listaDiseno) {
+            if (listaDisenador != null) {
+                if (listaDisenador.getIdentificacion() == identificacion) {
+                    numero_proyecto = listaDisenador.getNumero_proyecto() +1;
+                    listaDisenador.setNumero_proyecto(numero_proyecto);
+                }
+            }
+        }
+
 }

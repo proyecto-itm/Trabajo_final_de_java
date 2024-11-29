@@ -1,38 +1,35 @@
 package com.java.projecto.modelos;
 
 public class FacturaModelo  {
-    private int contador_factura;
-    private int factura;   
-    private ProyectoModelo[] proyecto;
-    public FacturaModelo(int contador_factura,int factura,int cantidad_proyecto) {
+    private int numeroFactura;
+    private ProyectoModelo proyecto;
+    private static int contadorFacturas = 1; // Contador para generar números consecutivos
 
-        this.contador_factura =contador_factura;
-        this.factura = factura;
-        this.proyecto =new ProyectoModelo[cantidad_proyecto];
-    }
-
-
-    public int getContador_factura() {
-        return contador_factura;
-    }
-
-    public void setContador_factura(int contador_factura) {
-        this.contador_factura = contador_factura;
-    }
-
-    public ProyectoModelo[] getProyecto() {
-        return proyecto;
-    }
-
-    public void setProyecto(ProyectoModelo[] proyecto) {
+    public FacturaModelo(ProyectoModelo proyecto) {
+        this.numeroFactura = contadorFacturas++;
         this.proyecto = proyecto;
     }
 
-    public int getFactura() {
-        return factura;
+    public int getNumeroFactura() {
+        return numeroFactura;
     }
 
-    public void setFactura(int factura) {
-        this.factura = factura;
+    public ProyectoModelo getProyecto() {
+        return proyecto;
+    }
+
+    public void mostrarDetalle() {
+        System.out.println("Factura N°: " + numeroFactura);
+        System.out.println("Proyecto ID: " + proyecto.getCodigo());
+        System.out.println("Cliente ID: " + proyecto.getIdCliente());
+        System.out.println("Servicios:");
+        for (ServicioModelo servicio : proyecto.getServicios()) {
+            if (servicio != null) {
+                System.out.println("- " + servicio.getDescripcion() + ": $" + servicio.getValorUnitario());
+            }
+        }
+        System.out.println("Subtotal: $" + proyecto.calcularSubtotal());
+        System.out.println("IVA: $" + proyecto.calcularIVA());
+        System.out.println("Total: $" + proyecto.calcularTotal());
     }
 }

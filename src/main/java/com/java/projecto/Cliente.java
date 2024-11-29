@@ -10,8 +10,8 @@ public class Cliente {
     private static final int MAX_ELEMENTOS = 50; // Tamaño máximo para cada matriz
     private static ClienteModelo[] listaClientes = new ClienteModelo[MAX_ELEMENTOS];
     private static int contadorClientes = 0;
-        
-    public void iniciar(Scanner scanner){
+    private Scanner scanner = new Scanner(System.in);
+    public void iniciar(){
         int opcion = 0;
          do {
              
@@ -28,7 +28,7 @@ public class Cliente {
             scanner.nextLine(); // Consumir el salto de línea
             switch (opcion) {
             case 1:
-                ingresarNuevoCliente(scanner);
+                ingresarNuevoCliente();
                 break;
             case 2:
                 getListaClientes();
@@ -43,6 +43,7 @@ public class Cliente {
                 mostrarClientesPorTipo();
                 break;
             case 7:
+                scanner.close();
                 System.out.println("Volviendo al menú principal...");
                 break;
             case 6:
@@ -53,7 +54,7 @@ public class Cliente {
             }
          } while (opcion != 7);          
     }
-    private static void ingresarNuevoCliente(Scanner scanner) {
+    private void ingresarNuevoCliente() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date fecha;
         if (contadorClientes >= MAX_ELEMENTOS) {
@@ -61,8 +62,8 @@ public class Cliente {
         return;
         }
         System.out.print("Ingrese la identificación del cliente: ");
-        Integer identificacion = scanner.nextInt();
-        scanner.nextLine ();
+        Integer identificacion = this.scanner.nextInt();
+        this.scanner.nextLine ();
         // Verificar si el cliente ya existe
         
         for (int i = 0; i < contadorClientes; i++) {
@@ -212,6 +213,13 @@ public class Cliente {
                 }
             }
         }
+    }
+
+
+
+    public ClienteModelo[] getListasClientes() {
+
+        return listaClientes;
     }
 
 }

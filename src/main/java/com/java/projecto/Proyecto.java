@@ -6,29 +6,29 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Proyecto {
-
-    ProyectoModelo listaProyecto[];
-    Supervisor supervisor = new Supervisor();
-    Disenador disenador = new Disenador();
-    Cliente cliente = new Cliente();
+    private static final int MAX_ELEMENTOS = 2;
+    private ProyectoModelo listaProyecto[] = new ProyectoModelo[MAX_ELEMENTOS];
+    private Supervisor supervisor = new Supervisor();
+    private Disenador disenador = new Disenador();
+    private Cliente cliente = new Cliente();
     private int totalProyectos = 0;
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
 
-    public Proyecto(int maxProyectos) {
-        this.listaProyecto = new ProyectoModelo[maxProyectos];
-    }
 
-    public void Iniciar(){
+
+
+    public ProyectoModelo[] Inicio (){
         int opcion = 0;
-
+        boolean validar = true;
         do{
             this.menu();
             do{
-                if(scanner.hasNextInt()){
+                validar = scanner.hasNextInt();
+                if(validar){
                     opcion = scanner.nextInt();
                 }
-            }while(!scanner.hasNextInt());
+            }while(!validar);
 
             switch (opcion){
                 case 1:
@@ -55,9 +55,8 @@ public class Proyecto {
                     break;
             }
         }while (opcion != 6);
-
+        return listaProyecto;
     }
-
     private void menu(){
 
         System.out.println("\n--- Menú de Proyectos ---");
@@ -71,7 +70,8 @@ public class Proyecto {
     }
 
     private void CraerProyecto(){
-
+        String fechaInicio;
+        String descripcion;
         if (totalProyectos >= listaProyecto.length) {
             System.out.println("No se pueden agregar más proyectos.");
             return;
@@ -83,17 +83,13 @@ public class Proyecto {
         int idCliente =  this.ValidarIdentificacionCliente();
         int numeroDeserviocio = this.ValidarIngreso("servicios");
         System.out.print("Ingrese la fecha de inicio (DD/MM/YYYY): ");
-        String fechaInicio = scanner.next();
+         fechaInicio = scanner.next();
         System.out.print("Ingrese la descripción del proyecto: ");
-        scanner.nextLine();
-        String descripcion = scanner.nextLine();
-        System.out.print("Ingrese el código del proyecto: ");
+
+        descripcion = scanner.next();
         listaProyecto[totalProyectos++] = new ProyectoModelo(codigo,fechaInicio,descripcion,idDisenador, idSupervisor,
                 idCliente,numeroDeserviocio);
         System.out.println("Proyecto creado exitosamente.");
-        if(totalProyectos <= listaProyecto.length -1){
-            this.totalProyectos = this.totalProyectos + 1;
-        }
         this.AgregarCliente(idCliente);
         this.AgregarSupervisor(idSupervisor);
         this.AgregarDisenador(idDisenador);
@@ -113,8 +109,8 @@ public class Proyecto {
 
     private void RegistrarServicio(){
 
-        int codigoProyecto = this.ValidarIngreso("proyecto"); scanner.nextInt();
-        ProyectoModelo proyecto = buscarProyecto(codigoProyecto);
+        int codigoProyecto = this.ValidarIngreso("proyecto");
+        ProyectoModelo proyecto = BuscarProyecto(codigoProyecto);
 
         if (proyecto == null) {
             System.out.println("El proyecto no existe.");
@@ -124,9 +120,9 @@ public class Proyecto {
         int codigoServicio = this.ValidarIngreso("servicio");
 
         System.out.print("Ingrese la descripción del servicio: ");
-        scanner.nextLine();
 
-        String descripcion = scanner.nextLine();
+
+        String descripcion = scanner.next();
         System.out.print("Ingrese el valor unitario del servicio: ");
 
         double valorUnitario = scanner.nextDouble();
@@ -138,8 +134,9 @@ public class Proyecto {
     private void MostrarProyecto() {
         String nombre;
         int identificacion = 0;
-        for (int i = 0; i <= totalProyectos; i++) {
+        for (int i = 0; i <= totalProyectos-1; i++) {
             ProyectoModelo p = listaProyecto[i];
+
 
             identificacion = p.getIdCliente();
             nombre = cliente.getNombreCliente(identificacion);
@@ -171,10 +168,44 @@ public class Proyecto {
         System.out.println("Nombre cliente: "+ nombre);
         System.out.println("Total:" + mayor.calcularTotal());
     }
+
+
     private void ProyectoValorSuperior(){
+        int registroSuperores = 0;
+        System.out.println("Ingresar el valor");
+        double valor = scanner.nextDouble();
+        String nombre;
+        if (totalProyectos == 0) {
+            System.out.println("No hay proyectos registrados.");
+            return;
+        }
+
+        for (int i = 0; i < totalProyectos; i++) {
+            if (this.listaProyecto[i].calcularTotal() > valor) {
+                registroSuperores++;
+            }
+        }
+
+        ProyectoModelo[] listaProyecto = new  ProyectoModelo[registroSuperores];
+
+        for (int i = 0; i < totalProyectos; i++) {
+            if (this.listaProyecto[i].calcularTotal() > valor) {
+                listaProyecto[i] = this.listaProyecto[i];
+            }
+        }
+
+        for (int i = 0; i < listaProyecto.length; i++){
+            nombre = cliente.getNombreCliente(listaProyecto[i].getIdCliente());
+            System.out.println("Proyecto con mayor valor");
+            System.out.println("Codigo: " + listaProyecto[i].getCodigo());
+            System.out.println("Nombre cliente: "+ nombre);
+            System.out.println("Total:" + listaProyecto[i].calcularTotal());
+            System.out.println("\n");
+        }
 
     }
-    private ProyectoModelo buscarProyecto(int codigo) {
+
+    private ProyectoModelo BuscarProyecto(int codigo) {
         for (int i = 0; i < totalProyectos; i++) {
             if (listaProyecto[i].getCodigo() == codigo) {
                 return listaProyecto[i];
@@ -189,12 +220,12 @@ public class Proyecto {
         int existe = 0;
 
         boolean salir = false;
-        ClienteModelo[]  listaclintes = this.cliente.getListaClientes();
+
         do{
             idCodigo = this.ValidarIngreso("codigo");
             for(int i = 0; i< listaProyecto.length;i++){
-                if(listaclintes[i] != null){
-                    if(listaclintes[i].getIdentificacion() == idCodigo){
+                if(this.listaProyecto[i] != null){
+                    if(listaProyecto[i].getCodigo() == idCodigo){
                         existe = 1;
                     }
                 }
@@ -228,7 +259,7 @@ public class Proyecto {
             }
 
             if(existe == 0){
-                System.out.print("La identificación del Diseñador no existe");
+                System.out.print("La identificación del Diseñador no existe \n");
             }
 
 
@@ -240,12 +271,12 @@ public class Proyecto {
         int idSupervisor;
         int existe = 0;
         boolean salir = false;
-        ClienteModelo[]  listaclintes = this.cliente.getListaClientes();
+        SupervisorModelo[]  listaSupervisores = this.supervisor.getListaSupervisores();
         do{
-            idSupervisor = this.ValidarIngreso("cliente");
-            for (ClienteModelo listaclinte : listaclintes) {
-                if (listaclinte != null) {
-                    if (listaclinte.getIdentificacion() == idSupervisor) {
+            idSupervisor = this.ValidarIngreso("Supervisor");
+            for (SupervisorModelo listaSupervisor : listaSupervisores) {
+                if (listaSupervisor != null) {
+                    if (listaSupervisor.getIdentificacion() == idSupervisor) {
                         existe = 1;
                         salir = true;
                     }
@@ -264,13 +295,13 @@ public class Proyecto {
         int idCliente;
         int existe = 0;
         boolean salir = false;
-        SupervisorModelo[]  listaSupervisores = this.supervisor.getListaDiseno();
-        idCliente =  this.ValidarIngreso("cliente");
+       ClienteModelo[]  listaClientes = this.cliente.getListasClientes();
+        idCliente =  this.ValidarIngreso("Cliente");
         do{
-            System.out.print("Ingrese la identificación del cliente: ");
-            for (SupervisorModelo listaSupervisor : listaSupervisores) {
-                if (listaSupervisor != null) {
-                    if (listaSupervisor.getIdentificacion() == idCliente) {
+
+            for (ClienteModelo cliente : listaClientes) {
+                if (cliente != null) {
+                    if (cliente.getIdentificacion() == idCliente) {
                         existe = 1;
                         salir = true;
                     }
@@ -288,23 +319,25 @@ public class Proyecto {
     }
 
     private int  ValidarIngreso(String tipoCampo){
+        boolean salir = true;
         int numero = 0;
         if(Objects.equals(tipoCampo, "codigo")){
-            System.out.print("Ingrese el "+ tipoCampo +" de la factura: ");
+            System.out.print("Ingrese el "+ tipoCampo +" de la proyecto: ");
         }else if(Objects.equals(tipoCampo, "servicios")){
             System.out.print("Ingrese el codigo del  "+tipoCampo+ " : ");
         }
         else{
             System.out.print("Ingrese la identificación del " +tipoCampo+ ":");
         }
-        System.out.print("Ingrese el "+ tipoCampo +" de la factura: ");
+
         do{
-            if(this.scanner.hasNextInt()){
+            salir = this.scanner.hasNextInt();
+            if(salir){
                 numero = this.scanner.nextInt();
             }else{
-                System.out.print("Lo ingresado no es un numero");
+                System.out.print("Lo ingresado no es un numero¨ \n");
             }
-        }while (!this.scanner.hasNextInt());
+        }while (!salir);
         return numero;
     }
 }

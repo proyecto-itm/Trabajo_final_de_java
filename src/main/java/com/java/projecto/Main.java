@@ -1,13 +1,18 @@
 package com.java.projecto;
 
+import com.java.projecto.modelos.ProyectoModelo;
+
 import java.util.Scanner;
 
 public class Main {
         
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Factura factura = new Factura();
+        Factura factura;
         Cliente cliente = new Cliente();
+        Proyecto proyecto = new Proyecto();
+        ProyectoModelo[] listaProyecto = new ProyectoModelo[50];
+        Disenador disenador = new Disenador();
         while (true) {
             System.out.println("\n--- Menú Principal ---");
             System.out.println("1. Diseñadores");
@@ -21,19 +26,20 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    // Llamar al módulo de diseñadores
+
                     break;
                 case 2:
                     // Llamar al módulo de supervisores
                     break;
                 case 3:
-                    cliente.iniciar(scanner);
+                    cliente.iniciar();
                     break;
                 case 4:
-                    // Llamar al módulo de proyectos
+                    listaProyecto = proyecto.Inicio();
                     break;
                 case 5:
-                    factura.Inciar();
+                    factura = new Factura(listaProyecto);
+                    factura.Inicio();
                     break;
                 case 6:
                     System.out.println("¡Hasta luego!");
