@@ -136,17 +136,4 @@ public class Supervisor {
             }
         }
     }
-
-    public static void main(String[] args) {
-        Supervisor supervisor = new Supervisor();
-        supervisor.menu();
-    }
-
-    SupervisorModelo[] getListaDiseno() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    void setAgregarProyecto(int identificacion) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
