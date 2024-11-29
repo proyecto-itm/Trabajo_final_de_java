@@ -45,4 +45,12 @@ public class SupervisorModelo {
     public void setProyectosSupervisados(int proyectosSupervisados) {
         this.proyectosSupervisados = proyectosSupervisados;
     }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 }

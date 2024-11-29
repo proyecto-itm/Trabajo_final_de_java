@@ -19,16 +19,16 @@ public class Disenador {
     }
 
 
-    public void setAgregarProyecto(int identificacion){
+    public void setAgregarProyecto(int identificacion) {
         int numero_proyecto;
 
         for (DisenoModelo listaDisenador : listaDiseno) {
             if (listaDisenador != null) {
                 if (listaDisenador.getIdentificacion() == identificacion) {
-                    numero_proyecto = listaDisenador.getNumero_proyecto() +1;
+                    numero_proyecto = listaDisenador.getNumero_proyecto() + 1;
                     listaDisenador.setNumero_proyecto(numero_proyecto);
                 }
             }
         }
-
+    }
 }
