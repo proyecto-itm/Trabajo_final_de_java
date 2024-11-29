@@ -11,6 +11,7 @@ public class Main {
         Factura factura;
         Cliente cliente = new Cliente();
         Proyecto proyecto = new Proyecto();
+        Supervisor supervisor = new Supervisor();
         ProyectoModelo[] listaProyecto = new ProyectoModelo[50];
         Disenador disenador = new Disenador();
         while (true) {
@@ -29,7 +30,7 @@ public class Main {
 
                     break;
                 case 2:
-                    // Llamar al módulo de supervisores
+                    supervisor.Inicio();
                     break;
                 case 3:
                     cliente.iniciar();
