@@ -215,8 +215,6 @@ public class Cliente {
         }
     }
 
-
-
     public ClienteModelo[] getListasClientes() {
 
         return listaClientes;

@@ -13,7 +13,6 @@ public class Main {
         Proyecto proyecto = new Proyecto();
         ProyectoModelo[] listaProyecto = new ProyectoModelo[50];
         Disenador disenador = new Disenador();
-        Supervisor supervisor = new Supervisor();
         while (true) {
             System.out.println("\n--- Menú Principal ---");
             System.out.println("1. Diseñadores");
@@ -27,10 +26,10 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    disenador.Inicio();
+
                     break;
                 case 2:
-                    supervisor.menu();
+                    // Llamar al módulo de supervisores
                     break;
                 case 3:
                     cliente.iniciar();

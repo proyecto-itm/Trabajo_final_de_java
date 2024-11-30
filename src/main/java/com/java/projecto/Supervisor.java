@@ -167,7 +167,7 @@ public class Supervisor {
     }
 
     // Menú principal
-    public void menu() {
+    public void Inicio() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
