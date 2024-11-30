@@ -11,8 +11,8 @@ public class Main {
         Factura factura;
         Cliente cliente = new Cliente();
         Proyecto proyecto = new Proyecto();
-        Supervisor supervisor = new Supervisor();
         ProyectoModelo[] listaProyecto = new ProyectoModelo[50];
+        Supervisor supervisor = new Supervisor();
         Disenador disenador = new Disenador();
         while (true) {
             System.out.println("\n--- Menú Principal ---");
@@ -27,7 +27,7 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-
+                    disenador.Inicio();
                     break;
                 case 2:
                     supervisor.Inicio();

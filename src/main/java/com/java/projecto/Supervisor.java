@@ -15,7 +15,7 @@ public class Supervisor {
     private int contadorSupervisores = 0; // Controla cuántos supervisores hay en el arreglo
 
     // Método para ingresar un nuevo supervisor
-    public void ingresarSupervisor() {
+    private void ingresarSupervisor() {
         if (contadorSupervisores >= listaSupervisores.length) {
             System.out.println("No se pueden agregar más supervisores. Capacidad máxima alcanzada.");
             return;
@@ -75,7 +75,7 @@ public class Supervisor {
     }
 
     // Método para listar supervisores
-    public void listarSupervisores() {
+    private void listarSupervisores() {
         if (contadorSupervisores == 0) {
             System.out.println("No hay supervisores registrados.");
             return;
@@ -92,7 +92,7 @@ public class Supervisor {
     }
 
     // Método para calcular el salario de cada supervisor
-    public void calcularSalario() {
+    private void calcularSalario() {
         if (contadorSupervisores == 0) {
             System.out.println("No hay supervisores registrados.");
             return;
@@ -111,7 +111,7 @@ public class Supervisor {
     }
 
     // Método para encontrar el supervisor más joven
-    public void supervisorMenorEdad() {
+    private void supervisorMenorEdad() {
         if (contadorSupervisores == 0) {
             System.out.println("No hay supervisores registrados.");
             return;
@@ -130,7 +130,7 @@ public class Supervisor {
     }
 
     // Método para contar supervisores por área
-    public void contarSupervisoresPorArea() {
+    private void contarSupervisoresPorArea() {
         if (contadorSupervisores == 0) {
             System.out.println("No hay supervisores registrados.");
             return;
